@@ -72,7 +72,15 @@ if ! [ -f "$iso" ]; then
     exit 1
 fi
 
-sudo mount -o loop "$iso" win11
+if ! which "xorriso" 1>/dev/null; then
+    echo "Xorriso not installed! Aborting."
+    exit 1
+fi
+
+if ! sudo mount -o loop "$iso" win11; then
+    echo "Unable to mount $iso! Aborting."
+    exit 1
+fi
 
 xorriso -as mkisofs \
     -iso-level 4 \
@@ -92,3 +100,5 @@ xorriso -as mkisofs \
     -A "CDIMAGE 2.56 (01/01/2005 TM)" \
     -o "$output" \
     win11 $config_dir
+
+sudo umount win11
