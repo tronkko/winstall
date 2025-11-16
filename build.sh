@@ -19,15 +19,15 @@ eval set -- "$PARSED"
 
 while true; do
     case "$1" in
-		-c|--config)
+        -c|--config)
             config="$2"
             use_custom_config=true
             shift 2
             ;;
-		-i|--iso)
-			iso="$2"
-			shift 2
-			;;
+        -i|--iso)
+            iso="$2"
+            shift 2
+            ;;
         -o|--output)
             output="$2"
             shift 2
